@@ -2,15 +2,15 @@
 const performances = [
     {
         id: 1,
-        title: "Romeo and Juliet",
-        role: "Romeo",
+        title: "The Play That Goes Wrong",
+        role: "Charles Haversham",
         date: "Spring 2023",
         type: "video",
         thumbnail: "/api/placeholder/400/225",
-        videoUrl: "https://vimeo.com/your-video-id",
-        platform: "vimeo",
+        videoUrl: "https://youtu.be/FAYM3BETfas",
+        platform: "youtube",
         category: "theater",
-        description: "Lead role in the school's main stage production"
+        description: "Gunn Theater 2023"
     },
     {
         id: 2,
