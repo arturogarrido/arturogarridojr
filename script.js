@@ -7,7 +7,7 @@ const performances = [
         date: "Spring 2023",
         type: "video",
         thumbnail: "/api/placeholder/400/225",
-        videoUrl: "https://youtu.be/FAYM3BETfas",
+        videoUrl: "https://www.youtube.com/embed/FAYM3BETfas",
         platform: "youtube",
         category: "theater",
         description: "Gunn Theater 2023"
@@ -116,13 +116,31 @@ function openModal(item) {
 
     let content = '';
     if (item.type === 'video') {
-        if (item.platform === 'vimeo') {
-            content = `<iframe src="${item.videoUrl}" class="w-full aspect-video" 
-                        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-        } else if (item.platform === 'youtube') {
-            content = `<iframe src="${item.videoUrl}" class="w-full aspect-video" 
-                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>`;
+        if (item.platform === 'youtube') {
+            // Ensure URL is in embed format
+            const videoUrl = item.videoUrl.includes('embed') 
+                ? item.videoUrl 
+                : `https://www.youtube.com/embed/${item.videoUrl.split('v=')[1]}`;
+            
+            content = `
+                <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                    <iframe 
+                        src="${videoUrl}"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>`;
+        } else if (item.platform === 'vimeo') {
+            content = `
+                <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                    <iframe 
+                        src="${item.videoUrl}"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                        allow="autoplay; fullscreen; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>`;
         }
     } else {
         content = `<img src="${item.imageUrl}" alt="${item.title}" class="w-full h-auto">`;
