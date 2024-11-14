@@ -194,24 +194,35 @@ function initializeSpotlight() {
     });
 }
 
-// Close modal when clicking outside or on close button
-document.addEventListener('click', (e) => {
+// Function to close modal
+function closeModal() {
     const modal = document.getElementById('mediaModal');
-    const modalContent = document.querySelector('.modal-content');
-    
-    if (e.target === modal || e.target.classList.contains('modal-close')) {
-        modal.classList.add('hidden');
-    }
-});
+    modal.classList.add('hidden');
+    // Optional: Clear the modal content when closing
+    document.getElementById('modalBody').innerHTML = '';
+}
 
-// Prevent modal close when clicking inside modal content
-document.querySelector('.modal-content').addEventListener('click', (e) => {
-    e.stopPropagation();
-});
-
-// Handle escape key to close modal
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        document.getElementById('mediaModal').classList.add('hidden');
+// Event listener for close button
+document.addEventListener('DOMContentLoaded', function() {
+    // Close button click
+    const closeButton = document.querySelector('.modal-close');
+    if (closeButton) {
+        closeButton.addEventListener('click', closeModal);
     }
+
+    // Click outside modal
+    const modal = document.getElementById('mediaModal');
+    modal.addEventListener('click', function(e) {
+        // Close only if clicking the dark overlay, not the content
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Escape key press
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
 });

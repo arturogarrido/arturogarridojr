@@ -161,6 +161,7 @@ body {
 .modal-content {
     background: white;
     padding: 2rem;
+    padding-top: 3rem;
     border-radius: 0.5rem;
     max-width: 90%;
     max-height: 90vh;
@@ -172,11 +173,25 @@ body {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    font-size: 1.5rem;
-    background: none;
+    width: 2rem;
+    height: 2rem;
+    background: white;
     border: none;
-    color: var(--color-warm-gray);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    line-height: 1;
     cursor: pointer;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    color: #333;
+    background: #f0f0f0;
 }
 
 /* Animations */
