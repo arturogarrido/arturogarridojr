@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theater Portfolio - [Student Name]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-header">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold playfair text-gold">[Student Name]</h1>
+            <div class="space-x-6 lora">
+                <a href="#about" class="hover:text-gold transition-colors">About</a>
+                <a href="#performances" class="hover:text-gold transition-colors">Performances</a>
+                <a href="#contact" class="hover:text-gold transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-background">
+            <div class="curtain-overlay"></div>
+            <div class="spotlight-overlay"></div>
+            <div class="dust-particles" id="dustParticles"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="text-6xl font-bold mb-4 playfair text-gold">[Student Name]</h1>
+            <p class="text-2xl text-white lora">Aspiring Theater Artist</p>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="/api/placeholder/600/800" alt="Profile Photo" class="rounded-lg shadow-lg">
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 playfair text-burgundy">About Me</h2>
+                    <p class="text-warm-gray-700 mb-4 lora">
+                        [Insert personal bio here. Include your passion for theater, experience, and aspirations.]
+                    </p>
+                    <div class="info-grid lora">
+                        <p><strong class="text-burgundy">Age:</strong> [Age]</p>
+                        <p><strong class="text-burgundy">School:</strong> [School Name]</p>
+                        <p><strong class="text-burgundy">Years of Experience:</strong> [X] years</p>
+                        <p><strong class="text-burgundy">Special Skills:</strong> [List relevant skills]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performances Gallery -->
+    <section id="performances" class="gallery-section">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 playfair text-burgundy">Performance Gallery</h2>
+            
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="theater">Theater</button>
+                <button class="filter-btn" data-filter="dance">Dance</button>
+                <button class="filter-btn" data-filter="musical">Musical</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8 playfair text-burgundy">Get in Touch</h2>
+            <div class="max-w-md mx-auto">
+                <p class="text-warm-gray-700 mb-6 lora">
+                    Interested in collaborating or learning more about my work?
+                    Feel free to reach out!
+                </p>
+                <div class="contact-info lora">
+                    <p><strong class="text-burgundy">Email:</strong> [email@example.com]</p>
+                    <p><strong class="text-burgundy">Phone:</strong> [phone number]</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">YouTube</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container mx-auto px-4 text-center lora">
+            <p>&copy; 2024 [Student Name]. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="mediaModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
