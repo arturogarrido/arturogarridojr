@@ -3,26 +3,26 @@ const performances = [
     {
         id: 1,
         title: "The Play That Goes Wrong",
-        role: "Charles Haversham",
+        role: "Robert Grove, who plays Thomas Colleymoore",
         date: "Spring 2023",
         type: "video",
-        thumbnail: "/api/placeholder/400/225",
+        thumbnail: "./images/theplaythatgoeswrong.png",
         videoUrl: "https://www.youtube.com/embed/FAYM3BETfas",
         platform: "youtube",
         category: "theater",
-        description: "Gunn Theater 2023"
+        description: "Gunn Theatre's 2023 Production"
     },
     {
         id: 2,
-        title: "Swan Lake",
-        role: "Principal Dancer",
-        date: "Winter 2023",
+        title: "Midsummer Night Dream",
+        role: "Puck",
+        date: "2024",
         type: "video",
-        thumbnail: "/api/placeholder/400/225",
-        videoUrl: "https://youtube.com/embed/your-video-id",
+        thumbnail: "./images/summerdream.png",
+        videoUrl: "https://youtube.com/embed/DyQ6xsRF260?si=oLVvE8qSe9Xy9QYr",
         platform: "youtube",
-        category: "dance",
-        description: "Featured performance at the winter showcase"
+        category: "theater",
+        description: "Gunn Theatre's 2024 Production"
     },
     // Add more performances here
 ];
