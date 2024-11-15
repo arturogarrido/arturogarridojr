@@ -1,7 +1,8 @@
 :root {
     --color-burgundy: #800020;
+    --color-dark-burgundy: #4A0012;
+    --color-darker-burgundy: #2A000A;
     --color-gold: #B8860B;
-    --color-warm-gray: #57534e;
 }
 
 /* Base Styles */
@@ -28,9 +29,8 @@ body {
     z-index: 40;
 }
 
-/* Hero Section */
 .hero {
-    height: 100vh;
+    height: 30vh; /* Changed from 100vh to 60vh */
     position: relative;
     overflow: hidden;
 }
@@ -38,45 +38,11 @@ body {
 .hero-background {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, #5A0015, #400010);
-}
-
-.curtain-overlay {
-    position: absolute;
-    inset: 0;
-    background-image: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 20px,
-        rgba(0,0,0,0.1) 20px,
-        rgba(0,0,0,0.1) 40px
+    background: linear-gradient(to bottom, 
+        var(--color-burgundy),
+        var(--color-dark-burgundy) 60%,
+        var(--color-darker-burgundy)
     );
-    animation: curtainWave 10s ease-in-out infinite;
-}
-
-.spotlight-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-        circle at 50% 50%,
-        rgba(255, 215, 0, 0.15) 0%,
-        transparent 30%
-    );
-}
-
-.dust-particles {
-    position: absolute;
-    inset: 0;
-}
-
-.dust-particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.2;
-    animation: float 5s ease-in-out infinite;
 }
 
 .hero-content {
@@ -89,9 +55,75 @@ body {
     align-items: center;
     text-align: center;
     padding: 2rem;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(3px);
 }
+
+.hero-content h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: .5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.05em;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    color: var(--color-gold);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero {
+        height: 20vh; /* Even shorter on mobile */
+    }
+    
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.5rem;
+    }
+}
+
+/* Enhance the curtain effect for shorter height */
+.curtain-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 20px,
+        rgba(0,0,0,0.2) 20px,
+        rgba(0,0,0,0.2) 40px
+    );
+    animation: curtainWave 10s ease-in-out infinite;
+}
+
+.spotlight-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(255, 215, 0, 0.15) 0%,
+        transparent 60%
+    ),
+    radial-gradient(
+        circle at 30% 40%,
+        rgba(184, 134, 11, 0.1) 0%,
+        transparent 40%
+    ),
+    radial-gradient(
+        circle at 70% 60%,
+        rgba(184, 134, 11, 0.1) 0%,
+        transparent 40%
+    );
+    mix-blend-mode: soft-light;
+}
+
 
 /* Gallery Section */
 .gallery-section {
@@ -195,9 +227,28 @@ body {
 }
 
 /* Animations */
+/* Enhanced curtain wave animation */
 @keyframes curtainWave {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(20px); }
+    0%, 100% { 
+        transform: translateX(0);
+        background-image: repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 20px,
+            rgba(0,0,0,0.2) 20px,
+            rgba(0,0,0,0.2) 40px
+        );
+    }
+    50% { 
+        transform: translateX(20px);
+        background-image: repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 20px,
+            rgba(0,0,0,0.3) 20px,
+            rgba(0,0,0,0.3) 40px
+        );
+    }
 }
 
 @keyframes float {
@@ -287,4 +338,13 @@ body {
 
 .volunteer-section .inline-block {
     animation: countUp 0.8s ease-out;
+}
+
+.dust-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: float 5s ease-in-out infinite;
 }
