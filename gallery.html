@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Theater Portfolio - Arturo Garrido Gómez</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="nav-header">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold playfair text-gold">Arturo Garrido Gómez</h1>
+            <h1 class="text-xl font-bold playfair text-gold">[Student Name]</h1>
             <div class="space-x-6 lora">
                 <a href="#about" class="hover:text-gold transition-colors">About</a>
                 <a href="#performances" class="hover:text-gold transition-colors">Performances</a>
+                <a href="#volunteer" class="hover:text-gold transition-colors">Volunteer Work</a>
                 <a href="#contact" class="hover:text-gold transition-colors">Contact</a>
             </div>
         </div>
@@ -61,7 +66,7 @@
     <section id="performances" class="gallery-section">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 playfair text-burgundy">Performance Gallery</h2>
-            
+
             <!-- Filter Buttons -->
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All</button>
@@ -73,6 +78,81 @@
             <!-- Gallery Grid -->
             <div class="gallery-grid" id="galleryGrid">
                 <!-- Gallery items will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Work Section -->
+    <section id="volunteer" class="volunteer-section py-20 bg-warm-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 playfair text-burgundy">Volunteer Work</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Volunteer Card 1 -->
+                <div
+                    class="bg-white rounded-lg shadow-lg overflow-hidden border border-warm-gray-200 hover:shadow-xl transition-shadow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="/api/placeholder/400/300" alt="Drama Workshop"
+                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 playfair text-burgundy">Drama Workshop Leader</h3>
+                        <p class="text-gold mb-2 lora">Local Youth Center</p>
+                        <p class="text-warm-gray-600 mb-4 lora">Sept 2023 - Present</p>
+                        <ul class="text-warm-gray-600 lora space-y-2">
+                            <li>• Led weekly drama workshops for underprivileged youth</li>
+                            <li>• Taught basic acting techniques and stage presence</li>
+                            <li>• Organized end-of-term showcase performance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Volunteer Card 2 -->
+                <div
+                    class="bg-white rounded-lg shadow-lg overflow-hidden border border-warm-gray-200 hover:shadow-xl transition-shadow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="/api/placeholder/400/300" alt="Senior Center Performance"
+                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 playfair text-burgundy">Senior Center Performances</h3>
+                        <p class="text-gold mb-2 lora">Golden Years Community Center</p>
+                        <p class="text-warm-gray-600 mb-4 lora">June 2023 - Present</p>
+                        <ul class="text-warm-gray-600 lora space-y-2">
+                            <li>• Performed monthly shows for senior residents</li>
+                            <li>• Organized sing-along sessions</li>
+                            <li>• Helped with holiday celebrations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Volunteer Card 3 -->
+                <div
+                    class="bg-white rounded-lg shadow-lg overflow-hidden border border-warm-gray-200 hover:shadow-xl transition-shadow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="/api/placeholder/400/300" alt="Theater Mentorship"
+                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 playfair text-burgundy">Theater Mentorship Program</h3>
+                        <p class="text-gold mb-2 lora">Middle School Drama Club</p>
+                        <p class="text-warm-gray-600 mb-4 lora">Jan 2023 - Present</p>
+                        <ul class="text-warm-gray-600 lora space-y-2">
+                            <li>• Mentored middle school students in theater</li>
+                            <li>• Assisted with after-school rehearsals</li>
+                            <li>• Helped with costume and set design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Hours Counter -->
+            <div class="mt-12 text-center">
+                <div class="inline-block bg-white rounded-lg shadow-lg px-8 py-6 border border-warm-gray-200">
+                    <h3 class="text-xl font-bold mb-2 playfair text-burgundy">Total Volunteer Hours</h3>
+                    <p class="text-3xl font-bold text-gold lora">150+ Hours</p>
+                    <p class="text-warm-gray-600 mt-2 lora">Committed to Community Theater</p>
+                </div>
             </div>
         </div>
     </section>
@@ -116,4 +196,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -11,7 +11,7 @@ body {
 }
 
 .playfair {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Lora', serif;
 }
 
 .lora {
@@ -248,4 +248,43 @@ body {
     border-radius: 0.5rem;
     max-height: 90vh;
     overflow-y: auto;
+}
+
+/* Add to your existing styles.css */
+
+.volunteer-section {
+    background-color: #f8f5f0;
+}
+
+.volunteer-section .grid {
+    margin-top: 2rem;
+}
+
+/* Card hover effects */
+.volunteer-section .shadow-lg:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* List styling */
+.volunteer-section ul li {
+    position: relative;
+    padding-left: 1rem;
+    line-height: 1.5;
+}
+
+/* Counter animation */
+@keyframes countUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.volunteer-section .inline-block {
+    animation: countUp 0.8s ease-out;
 }
