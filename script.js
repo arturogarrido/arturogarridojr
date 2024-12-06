@@ -30,6 +30,7 @@ const performances = [
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     initializeGallery();
+    initializePhotoGallery();
     createDustParticles();
     initializeSpotlight();
     initializeSmoothScroll();
@@ -226,3 +227,139 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Photo Gallery data
+const photos = [
+    {
+        id: 1,
+        title: "Beetlejuice Preparations",
+        event: "Beetlejuice",
+        date: "Spring 2023",
+        imageUrl: "./images/bjuice.png",
+        category: "backstage",
+        description: "Getting into character"
+    },
+    {
+        id: 2,
+        title: "On stage",
+        event: "...",
+        date: "Spring 2023",
+        imageUrl: "./images/onstage1.png",
+        category: "backstage",
+        description: "On Stage"
+    },
+    {
+        id: 3,
+        title: "Poisoned",
+        event: "The Play That Goes Wrong",
+        date: "Winter 2023",
+        imageUrl: "./images/tptgw1.png",
+        category: "production",
+        description: "Final Scene"
+    },
+    {
+        id: 4,
+        title: "",
+        event: "High School Musical",
+        date: "Spring 2023",
+        imageUrl: "./images/hsm1.png",
+        category: "portrait",
+        description: "Lights On"
+    },
+    {
+        id: 5,
+        title: "Ophelia",
+        event: "Ophelia",
+        date: "Fall 2023",
+        imageUrl: "./images/ophelia1.png",
+        category: "production",
+        description: "On Stage"
+    },
+    {
+        id: 6,
+        title: "5th Grade Bio",
+        event: "Elementary School",
+        date: "2017",
+        imageUrl: "./images/ArturoBio5thgrade.png",
+        category: "bio",
+        description: "Dreaming about the future"
+    }
+];
+
+// Initialize photo gallery
+function initializePhotoGallery() {
+    const photoGrid = document.getElementById('photoGrid');
+    const photoFilterButtons = document.querySelectorAll('.photo-filter-btn');
+
+    // Create gallery items
+    renderPhotoGallery(photos);
+
+    // Filter functionality
+    photoFilterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.dataset.filter;
+            
+            // Update active button
+            photoFilterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Filter items
+            const filteredPhotos = filter === 'all' 
+                ? photos 
+                : photos.filter(item => item.category === filter);
+            
+            renderPhotoGallery(filteredPhotos);
+        });
+    });
+}
+
+// Render photo gallery items
+function renderPhotoGallery(items) {
+    const photoGrid = document.getElementById('photoGrid');
+    photoGrid.innerHTML = '';
+
+    items.forEach(item => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.innerHTML = `
+            <div class="relative cursor-pointer group">
+                <img src="${item.imageUrl}" 
+                     alt="${item.title}" 
+                     class="w-full h-48 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 
+                            transition-opacity flex items-center justify-center">
+                    <svg class="w-12 h-12 text-white" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-7.83 7.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-bold text-xl mb-2 playfair text-burgundy">${item.title}</h3>
+                <p class="text-gold mb-4 lora">${item.event} - ${item.date}</p>
+                <p class="text-gray-600 lora line-clamp-2">${item.description}</p>
+            </div>
+        `;
+
+        galleryItem.addEventListener('click', () => openPhotoModal(item));
+        photoGrid.appendChild(galleryItem);
+    });
+}
+
+// Photo modal functionality
+function openPhotoModal(item) {
+    const modal = document.getElementById('mediaModal');
+    const modalBody = document.getElementById('modalBody');
+
+    modalBody.innerHTML = `
+        <div class="max-w-4xl mx-auto">
+            <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-auto rounded-lg shadow-lg">
+            <div class="mt-4">
+                <h3 class="text-2xl font-bold playfair text-burgundy">${item.title}</h3>
+                <p class="text-gold mt-1 lora">${item.event} - ${item.date}</p>
+                <p class="text-gray-600 mt-2 lora">${item.description}</p>
+            </div>
+        </div>
+    `;
+
+    modal.classList.remove('hidden');
+}
