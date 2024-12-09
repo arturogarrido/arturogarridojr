@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <style>
+        .pdf-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #pageNumber {
+            width: 50px;
+            text-align: center;
+        }
+        
+        button {
+            padding: 5px 15px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        #canvas {
+            max-width: 100%;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        #loader {
+            text-align: center;
+            display: none;
+        }
+        
+        .error {
+            color: red;
+            text-align: center;
+            display: none;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pdf-container">
+        <div class="controls">
+            <button id="prev">Previous</button>
+            <input type="number" id="pageNumber" value="1" min="1">
+            <span>of <span id="pageCount">0</span></span>
+            <button id="next">Next</button>
+            <button id="zoomIn">Zoom In</button>
+            <button id="zoomOut">Zoom Out</button>
+        </div>
+        
+        <div id="loader">Loading PDF...</div>
+        <div id="error" class="error"></div>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <script>
+        // Configure PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+
+        // State variables
+        let pdfDoc = null;
+        let pageNum = 1;
+        let scale = 1.5;
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // UI elements
+        const loader = document.getElementById('loader');
+        const errorDiv = document.getElementById('error');
+        const pageNumberInput = document.getElementById('pageNumber');
+        const pageCount = document.getElementById('pageCount');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        const zoomInButton = document.getElementById('zoomIn');
+        const zoomOutButton = document.getElementById('zoomOut');
+
+        // Load and render PDF
+        async function loadPDF(url) {
+            try {
+                loader.style.display = 'block';
+                errorDiv.style.display = 'none';
+                canvas.style.display = 'none';
+
+                pdfDoc = await pdfjsLib.getDocument(url).promise;
+                pageCount.textContent = pdfDoc.numPages;
+                pageNumberInput.max = pdfDoc.numPages;
+                
+                await renderPage(pageNum);
+                
+                loader.style.display = 'none';
+                canvas.style.display = 'block';
+            } catch (error) {
+                loader.style.display = 'none';
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = 'Error loading PDF: ' + error.message;
+            }
+        }
+
+        // Render specific page
+        async function renderPage(num) {
+            try {
+                const page = await pdfDoc.getPage(num);
+                const viewport = page.getViewport({ scale });
+                
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                
+                await page.render({
+                    canvasContext: ctx,
+                    viewport: viewport
+                }).promise;
+                
+                pageNumberInput.value = num;
+                prevButton.disabled = num <= 1;
+                nextButton.disabled = num >= pdfDoc.numPages;
+            } catch (error) {
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = 'Error rendering page: ' + error.message;
+            }
+        }
+
+        // Event listeners
+        prevButton.addEventListener('click', () => {
+            if (pageNum > 1) {
+                pageNum--;
+                renderPage(pageNum);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (pageNum < pdfDoc.numPages) {
+                pageNum++;
+                renderPage(pageNum);
+            }
+        });
+
+        pageNumberInput.addEventListener('change', () => {
+            const num = parseInt(pageNumberInput.value);
+            if (num >= 1 && num <= pdfDoc.numPages) {
+                pageNum = num;
+                renderPage(pageNum);
+            }
+        });
+
+        zoomInButton.addEventListener('click', () => {
+            scale *= 1.2;
+            renderPage(pageNum);
+        });
+
+        zoomOutButton.addEventListener('click', () => {
+            scale *= 0.8;
+            renderPage(pageNum);
+        });
+
+        loadPDF('ArturoGarridoGomezResume.pdf');
+    </script>
+</body>
+</html>
