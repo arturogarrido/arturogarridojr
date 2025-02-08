@@ -31,7 +31,7 @@ const performances = [
         date: "2025",
         type: "video",
         thumbnail: "./images/willkommen.png",
-        videoUrl: "https://youtu.be/L0NpPvYEBcQ",
+        videoUrl: "https://youtube.com/embed/L0NpPvYEBcQ",
         platform: "youtube",
         category: "theater",
         description: "Gunn Theatre's 2025 Talent Night"
