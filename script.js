@@ -27,7 +27,7 @@ const performances = [
     {
         id: 3,
         title: "Willkommen from Cabaret",
-        role: "Em Cee",
+        role: "Emcee",
         date: "2025",
         type: "video",
         thumbnail: "./images/willkommen.png",
