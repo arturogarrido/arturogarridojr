@@ -24,6 +24,18 @@ const performances = [
         category: "theater",
         description: "Gunn Theatre's 2024 Production"
     },
+    {
+        id: 3,
+        title: "Willkommen from Cabaret",
+        role: "Em Cee",
+        date: "2025",
+        type: "video",
+        thumbnail: "./images/summerdream.png",
+        videoUrl: "https://youtu.be/L0NpPvYEBcQ",
+        platform: "youtube",
+        category: "theater",
+        description: "Gunn Theatre's 2025 Talent Night"
+    },
     // Add more performances here
 ];
 
