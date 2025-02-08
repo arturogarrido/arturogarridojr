@@ -30,7 +30,7 @@ const performances = [
         role: "Em Cee",
         date: "2025",
         type: "video",
-        thumbnail: "./images/summerdream.png",
+        thumbnail: "./images/willkommen.png",
         videoUrl: "https://youtu.be/L0NpPvYEBcQ",
         platform: "youtube",
         category: "theater",
