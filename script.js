@@ -36,6 +36,18 @@ const performances = [
         category: "theater",
         description: "Gunn Theatre's 2025 Talent Night"
     },
+    {
+        id: 4,
+        title: "Monologue",
+        role: "Puck",
+        date: "2024",
+        type: "video",
+        thumbnail: "./images/monologue_puck.png",
+        videoUrl: "https://youtube.com/embed/z8RLMVMIGF4",
+        platform: "youtube",
+        category: "theater",
+        description: "Puck's Monologue from Midsummer Night Dream"
+    }
     // Add more performances here
 ];
 
@@ -243,6 +255,15 @@ document.addEventListener('DOMContentLoaded', function() {
 // Photo Gallery data
 const photos = [
     {
+        id: 0,
+        title: "Willkommen",
+        event: "Gunn Theatre Talen Night",
+        date: "2024",
+        imageUrl: "./images/willkommen_2.png",
+        category: "production",
+        description: "Directed, Emcee role"
+    },
+    {
         id: 1,
         title: "Beetlejuice Preparations",
         event: "Beetlejuice",
@@ -271,7 +292,7 @@ const photos = [
     },
     {
         id: 4,
-        title: "",
+        title: "High School Musical",
         event: "High School Musical",
         date: "Spring 2023",
         imageUrl: "./images/hsm1.png",
@@ -289,6 +310,51 @@ const photos = [
     },
     {
         id: 6,
+        title: "De Pinna Scene",
+        event: "You Can't Take It With You",
+        date: "2024",
+        imageUrl: "./images/yctiwy.gif",
+        category: "production",
+        description: ""
+    },
+    {
+        id: 7,
+        title: "De Pinna 1",
+        event: "You Can't Take It With You",
+        date: "2024",
+        imageUrl: "./images/yctiwy_1.png",
+        category: "production",
+        description: ""
+    },
+    {
+        id: 8,
+        title: "De Pinna 2",
+        event: "You Can't Take It With You",
+        date: "2024",
+        imageUrl: "./images/yctiwy_2.png",
+        category: "production",
+        description: ""
+    },
+    {
+        id: 9,
+        title: "Serious Business",
+        event: "Dinner",
+        date: "2024",
+        imageUrl: "./images/business.png",
+        category: "bio",
+        description: ""
+    },
+    {
+        id: 10,
+        title: "The Worm",
+        event: "High School Musical",
+        date: "2024",
+        imageUrl: "./images/worm.png",
+        category: "production",
+        description: ""
+    },
+    {
+        id: 10,
         title: "5th Grade Bio",
         event: "Elementary School",
         date: "2017",
