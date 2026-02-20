@@ -4,7 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theater Portfolio - Arturo Garrido Gómez</title>
+    <title>Arturo Garrido Gómez - Theater Portfolio</title>
+    <meta name="description" content="Theater portfolio of Arturo Garrido Gómez, an aspiring theater artist from Palo Alto, CA. Featuring performances, photos, and volunteer work.">
+    <meta name="author" content="Arturo Garrido Gómez">
+    <link rel="canonical" href="https://arturogarridojr.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arturogarridojr.com/">
+    <meta property="og:title" content="Arturo Garrido Gómez - Theater Portfolio">
+    <meta property="og:description" content="Theater portfolio of Arturo Garrido Gómez, an aspiring theater artist from Palo Alto, CA. Featuring performances, photos, and volunteer work.">
+    <meta property="og:image" content="https://arturogarridojr.com/images/portrait_hat.webp">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Arturo Garrido Gómez - Theater Portfolio">
+    <meta name="twitter:description" content="Theater portfolio of Arturo Garrido Gómez, an aspiring theater artist from Palo Alto, CA.">
+    <meta name="twitter:image" content="https://arturogarridojr.com/images/portrait_hat.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500;600&display=swap"
@@ -17,7 +36,12 @@
     <nav class="nav-header">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-xl font-bold playfair text-gold">Arturo Garrido Gómez</h1>
-            <div class="space-x-6 lora">
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links space-x-6 lora">
                 <a href="#about" class="hover:text-gold transition-colors">About</a>
                 <a href="#performances" class="hover:text-gold transition-colors">Performances</a>
                 <a href="#photos" class="hover:text-gold transition-colors">Photo Gallery</a>
@@ -36,7 +60,7 @@
             <div class="dust-particles" id="dustParticles"></div>
         </div>
         <div class="hero-content">
-            <h1 class="playfair">Arturo Garrido Gómez</h1>
+            <h2 class="playfair">Arturo Garrido Gómez</h2>
             <p class="lora">Aspiring Theater Artist</p>
         </div>
     </header>
@@ -46,7 +70,7 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <img src="./images/portrait_hat.png" alt="Profile Photo" class="rounded-lg shadow-lg">
+                    <img src="./images/portrait_hat.webp" alt="Profile Photo" class="rounded-lg shadow-lg">
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold mb-6 playfair text-burgundy">About Me</h2>
@@ -57,7 +81,6 @@
                         <p><strong class="text-burgundy">Age:</strong> 18</p>
                         <p><strong class="text-burgundy">School:</strong> Henry M. Gunn High School</p>
                         <p><strong class="text-burgundy">Location:</strong> Palo Alto, CA</p>
-                        <p><strong class="text-burgundy">Special Skills:</strong> [List relevant skills]</p>
                     </div>
                 </div>
             </div>
@@ -68,14 +91,6 @@
     <section id="performances" class="gallery-section">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 playfair text-burgundy">Performance Gallery</h2>
-
-            <!-- Filter Buttons -->
-            <!-- <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="theater">Theater</button>
-                <button class="filter-btn" data-filter="dance">Dance</button>
-                <button class="filter-btn" data-filter="musical">Musical</button>
-            </div> -->
 
             <!-- Gallery Grid -->
             <div class="gallery-grid" id="galleryGrid">
@@ -89,25 +104,6 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 playfair text-burgundy">Photo Gallery</h2>
             
-            <!-- Filter tabs -->
-            <!-- <div class="flex justify-center mb-8 space-x-4 flex-wrap gap-y-2">
-                <button class="photo-filter-btn px-4 py-2 rounded-full bg-burgundy text-white hover:bg-opacity-90 lora active" data-filter="all">
-                    All Photos
-                </button>
-                <button class="photo-filter-btn px-4 py-2 rounded-full border border-burgundy text-burgundy hover:bg-burgundy hover:text-white transition-colors lora" data-filter="production">
-                    Production
-                </button>
-                <button class="photo-filter-btn px-4 py-2 rounded-full border border-burgundy text-burgundy hover:bg-burgundy hover:text-white transition-colors lora" data-filter="backstage">
-                    Backstage
-                </button>
-                <button class="photo-filter-btn px-4 py-2 rounded-full border border-burgundy text-burgundy hover:bg-burgundy hover:text-white transition-colors lora" data-filter="rehearsal">
-                    Rehearsals
-                </button>
-                <button class="photo-filter-btn px-4 py-2 rounded-full border border-burgundy text-burgundy hover:bg-burgundy hover:text-white transition-colors lora" data-filter="portrait">
-                    Portraits
-                </button>
-            </div> -->
-    
             <!-- Photo grid -->
             <div id="photoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Photos will be inserted here by JavaScript -->
@@ -163,14 +159,6 @@
                 </div>
             </div>
 
-            <!-- Total Hours Counter -->
-            <!-- <div class="mt-12 text-center">
-                <div class="inline-block bg-white rounded-lg shadow-lg px-8 py-6 border border-warm-gray-200">
-                    <h3 class="text-xl font-bold mb-2 playfair text-burgundy">Total Volunteer Hours</h3>
-                    <p class="text-3xl font-bold text-gold lora">150+ Hours</p>
-                    <p class="text-warm-gray-600 mt-2 lora">Committed to Community Theater</p>
-                </div>
-            </div> -->
         </div>
     </section>
 
@@ -185,18 +173,14 @@
                 </p>
                 <div class="contact-info lora">
                     <p><strong class="text-burgundy">Email:</strong> arturo2college@gmail.com</p>
-                    <!-- <div class="social-links">
-                        <a href="https://www.youtube.com/@ArturoGarridoGomezCollege" class="social-link">YouTube</a>
-                    </div> -->
                 </div>
             </div>
         </div>
     </section>
-    <p>&nbsp;</p><p>&nbsp;</p>
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container mx-auto px-4 text-center lora">
-            <p>&copy; 2025 Arturo Garrido Gómez. All rights reserved.</p>
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Arturo Garrido Gómez. All rights reserved.</p>
         </div>
     </footer>
 

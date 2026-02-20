@@ -6,7 +6,7 @@ const performances = [
         role: "Robert Grove, who plays Thomas Colleymoore",
         date: "Spring 2023",
         type: "video",
-        thumbnail: "./images/theplaythatgoeswrong.png",
+        thumbnail: "./images/theplaythatgoeswrong.webp",
         videoUrl: "https://www.youtube.com/embed/FAYM3BETfas",
         platform: "youtube",
         category: "theater",
@@ -18,7 +18,7 @@ const performances = [
         role: "Puck",
         date: "2024",
         type: "video",
-        thumbnail: "./images/summerdream.png",
+        thumbnail: "./images/summerdream.webp",
         videoUrl: "https://youtube.com/embed/DyQ6xsRF260?si=oLVvE8qSe9Xy9QYr",
         platform: "youtube",
         category: "theater",
@@ -30,7 +30,7 @@ const performances = [
         role: "Emcee",
         date: "2025",
         type: "video",
-        thumbnail: "./images/willkommen.png",
+        thumbnail: "./images/willkommen.webp",
         videoUrl: "https://youtube.com/embed/L0NpPvYEBcQ",
         platform: "youtube",
         category: "theater",
@@ -42,13 +42,12 @@ const performances = [
         role: "Puck",
         date: "2024",
         type: "video",
-        thumbnail: "./images/monologue_puck.png",
+        thumbnail: "./images/monologue_puck.webp",
         videoUrl: "https://youtube.com/embed/z8RLMVMIGF4",
         platform: "youtube",
         category: "theater",
         description: "Puck's Monologue from Midsummer Night Dream"
     }
-    // Add more performances here
 ];
 
 // Initialize the page
@@ -58,7 +57,30 @@ document.addEventListener('DOMContentLoaded', () => {
     createDustParticles();
     initializeSpotlight();
     initializeSmoothScroll();
+    initializeMobileNav();
 });
+
+// Mobile navigation toggle
+function initializeMobileNav() {
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (toggle && navLinks) {
+        toggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('active');
+            toggle.classList.toggle('active');
+            toggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+}
 
 // Smooth scroll functionality
 function initializeSmoothScroll() {
@@ -77,29 +99,7 @@ function initializeSmoothScroll() {
 
 // Gallery initialization
 function initializeGallery() {
-    const galleryGrid = document.getElementById('galleryGrid');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-
-    // Create gallery items
     renderGalleryItems(performances);
-
-    // Filter functionality
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const filter = button.dataset.filter;
-            
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            // Filter items
-            const filteredPerformances = filter === 'all' 
-                ? performances 
-                : performances.filter(item => item.category === filter);
-            
-            renderGalleryItems(filteredPerformances);
-        });
-    });
 }
 
 // Render gallery items
@@ -112,8 +112,9 @@ function renderGalleryItems(items) {
         galleryItem.className = 'gallery-item';
         galleryItem.innerHTML = `
             <div class="relative cursor-pointer">
-                <img src="${item.type === 'video' ? item.thumbnail : item.imageUrl}" 
-                     alt="${item.title}" 
+                <img src="${item.type === 'video' ? item.thumbnail : item.imageUrl}"
+                     alt="${item.title}"
+                     loading="lazy"
                      class="w-full h-48 object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 
                             transition-opacity flex items-center justify-center">
@@ -129,7 +130,16 @@ function renderGalleryItems(items) {
             </div>
         `;
 
+        galleryItem.setAttribute('tabindex', '0');
+        galleryItem.setAttribute('role', 'button');
+        galleryItem.setAttribute('aria-label', `View ${item.title}`);
         galleryItem.addEventListener('click', () => openModal(item));
+        galleryItem.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openModal(item);
+            }
+        });
         galleryGrid.appendChild(galleryItem);
     });
 }
@@ -257,9 +267,9 @@ const photos = [
     {
         id: 0,
         title: "Willkommen",
-        event: "Gunn Theatre Talen Night",
+        event: "Gunn Theatre Talent Night",
         date: "2024",
-        imageUrl: "./images/willkommen_2.png",
+        imageUrl: "./images/willkommen_2.webp",
         category: "production",
         description: "Directed, Emcee role"
     },
@@ -268,16 +278,16 @@ const photos = [
         title: "Beetlejuice Preparations",
         event: "Beetlejuice",
         date: "Spring 2023",
-        imageUrl: "./images/bjuice.png",
+        imageUrl: "./images/bjuice.webp",
         category: "backstage",
         description: "Getting into character"
     },
     {
         id: 2,
         title: "On stage",
-        event: "...",
+        event: "Gunn Theatre",
         date: "Spring 2023",
-        imageUrl: "./images/onstage1.png",
+        imageUrl: "./images/onstage1.webp",
         category: "backstage",
         description: "On Stage"
     },
@@ -286,7 +296,7 @@ const photos = [
         title: "Poisoned",
         event: "The Play That Goes Wrong",
         date: "Winter 2023",
-        imageUrl: "./images/tptgw1.png",
+        imageUrl: "./images/tptgw1.webp",
         category: "production",
         description: "Final Scene"
     },
@@ -295,7 +305,7 @@ const photos = [
         title: "High School Musical",
         event: "High School Musical",
         date: "Spring 2023",
-        imageUrl: "./images/hsm1.png",
+        imageUrl: "./images/hsm1.webp",
         category: "portrait",
         description: "Lights On"
     },
@@ -304,7 +314,7 @@ const photos = [
         title: "Ophelia",
         event: "Ophelia",
         date: "Fall 2023",
-        imageUrl: "./images/ophelia1.png",
+        imageUrl: "./images/ophelia1.webp",
         category: "production",
         description: "On Stage"
     },
@@ -322,7 +332,7 @@ const photos = [
         title: "De Pinna 1",
         event: "You Can't Take It With You",
         date: "2024",
-        imageUrl: "./images/yctiwy_1.png",
+        imageUrl: "./images/yctiwy_1.webp",
         category: "production",
         description: ""
     },
@@ -331,7 +341,7 @@ const photos = [
         title: "De Pinna 2",
         event: "You Can't Take It With You",
         date: "2024",
-        imageUrl: "./images/yctiwy_2.png",
+        imageUrl: "./images/yctiwy_2.webp",
         category: "production",
         description: ""
     },
@@ -340,7 +350,7 @@ const photos = [
         title: "Serious Business",
         event: "Dinner",
         date: "2024",
-        imageUrl: "./images/business.png",
+        imageUrl: "./images/business.webp",
         category: "bio",
         description: ""
     },
@@ -349,16 +359,16 @@ const photos = [
         title: "The Worm",
         event: "High School Musical",
         date: "2024",
-        imageUrl: "./images/worm.png",
+        imageUrl: "./images/worm.webp",
         category: "production",
         description: ""
     },
     {
-        id: 10,
+        id: 11,
         title: "5th Grade Bio",
         event: "Elementary School",
         date: "2017",
-        imageUrl: "./images/ArturoBio5thgrade.png",
+        imageUrl: "./images/ArturoBio5thgrade.webp",
         category: "bio",
         description: "Dreaming about the future"
     }
@@ -366,29 +376,7 @@ const photos = [
 
 // Initialize photo gallery
 function initializePhotoGallery() {
-    const photoGrid = document.getElementById('photoGrid');
-    const photoFilterButtons = document.querySelectorAll('.photo-filter-btn');
-
-    // Create gallery items
     renderPhotoGallery(photos);
-
-    // Filter functionality
-    photoFilterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const filter = button.dataset.filter;
-            
-            // Update active button
-            photoFilterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            // Filter items
-            const filteredPhotos = filter === 'all' 
-                ? photos 
-                : photos.filter(item => item.category === filter);
-            
-            renderPhotoGallery(filteredPhotos);
-        });
-    });
 }
 
 // Render photo gallery items
@@ -401,8 +389,9 @@ function renderPhotoGallery(items) {
         galleryItem.className = 'gallery-item';
         galleryItem.innerHTML = `
             <div class="relative cursor-pointer group">
-                <img src="${item.imageUrl}" 
-                     alt="${item.title}" 
+                <img src="${item.imageUrl}"
+                     alt="${item.title}"
+                     loading="lazy"
                      class="w-full h-48 object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 
                             transition-opacity flex items-center justify-center">
@@ -418,7 +407,16 @@ function renderPhotoGallery(items) {
             </div>
         `;
 
+        galleryItem.setAttribute('tabindex', '0');
+        galleryItem.setAttribute('role', 'button');
+        galleryItem.setAttribute('aria-label', `View ${item.title}`);
         galleryItem.addEventListener('click', () => openPhotoModal(item));
+        galleryItem.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openPhotoModal(item);
+            }
+        });
         photoGrid.appendChild(galleryItem);
     });
 }
