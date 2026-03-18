@@ -9,6 +9,10 @@
     <meta name="author" content="Arturo Garrido Gómez">
     <link rel="canonical" href="https://arturogarridojr.com/">
 
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://arturogarridojr.com/">
@@ -24,10 +28,12 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+        integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500;600&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -47,7 +53,7 @@
                 <a href="#photos" class="hover:text-gold transition-colors">Photo Gallery</a>
                 <a href="#volunteer" class="hover:text-gold transition-colors">Volunteer Work</a>
                 <a href="#contact" class="hover:text-gold transition-colors">Contact</a>
-                <a href="./resume/ArturoGarridoGomezResume.pdf" target="_blank" class="hover:text-gold transition-colors">Resume</a>
+                <a href="./resume/ArturoGarridoGomezResume.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">Resume</a>
             </div>
         </div>
     </nav>
@@ -172,7 +178,7 @@
                     Feel free to reach out!
                 </p>
                 <div class="contact-info lora">
-                    <p><strong class="text-burgundy">Email:</strong> arturo2college@gmail.com</p>
+                    <p><strong class="text-burgundy">Email:</strong> <a href="#" id="emailLink" class="text-burgundy hover:text-gold transition-colors">Click to reveal email</a></p>
                 </div>
             </div>
         </div>
@@ -180,7 +186,7 @@
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container mx-auto px-4 text-center lora">
-            <p>&copy; <script>document.write(new Date().getFullYear())</script> Arturo Garrido Gómez. All rights reserved.</p>
+            <p>&copy; <span id="copyrightYear"></span> Arturo Garrido Gómez. All rights reserved.</p>
         </div>
     </footer>
 
