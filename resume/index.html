@@ -57,17 +57,29 @@
             display: none;
             padding: 20px;
         }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
     </style>
 </head>
 <body>
     <div class="pdf-container">
         <div class="controls">
-            <button id="prev">Previous</button>
-            <input type="number" id="pageNumber" value="1" min="1">
+            <button id="prev" aria-label="Previous page">Previous</button>
+            <label for="pageNumber" class="sr-only">Page number</label>
+            <input type="number" id="pageNumber" value="1" min="1" aria-label="Current page number">
             <span>of <span id="pageCount">0</span></span>
-            <button id="next">Next</button>
-            <button id="zoomIn">Zoom In</button>
-            <button id="zoomOut">Zoom Out</button>
+            <button id="next" aria-label="Next page">Next</button>
+            <button id="zoomIn" aria-label="Zoom in">Zoom In</button>
+            <button id="zoomOut" aria-label="Zoom out">Zoom Out</button>
         </div>
 
         <div id="loader">Loading PDF...</div>
@@ -84,6 +96,8 @@
         let pdfDoc = null;
         let pageNum = 1;
         let scale = 1.5;
+        const MIN_SCALE = 0.5;
+        const MAX_SCALE = 4.0;
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
 
@@ -166,13 +180,17 @@
         });
 
         zoomInButton.addEventListener('click', () => {
-            scale *= 1.2;
-            renderPage(pageNum);
+            if (scale < MAX_SCALE) {
+                scale = Math.min(scale * 1.2, MAX_SCALE);
+                renderPage(pageNum);
+            }
         });
 
         zoomOutButton.addEventListener('click', () => {
-            scale *= 0.8;
-            renderPage(pageNum);
+            if (scale > MIN_SCALE) {
+                scale = Math.max(scale * 0.8, MIN_SCALE);
+                renderPage(pageNum);
+            }
         });
 
         loadPDF('ArturoGarridoGomezResume.pdf');

@@ -74,7 +74,7 @@ function initializeCopyrightYear() {
 function initializeEmailLink() {
     const link = document.getElementById('emailLink');
     if (link) {
-        link.addEventListener('click', (e) => {
+        function revealEmail(e) {
             e.preventDefault();
             // Obfuscated email - assembled at runtime to avoid scraping
             const user = 'arturo2college';
@@ -82,8 +82,9 @@ function initializeEmailLink() {
             const email = user + '@' + domain;
             link.textContent = email;
             link.href = 'mailto:' + email;
-            link.removeEventListener('click', arguments.callee);
-        });
+            link.removeEventListener('click', revealEmail);
+        }
+        link.addEventListener('click', revealEmail);
     }
 }
 
