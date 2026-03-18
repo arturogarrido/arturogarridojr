@@ -1,4 +1,6 @@
-
 .DS_Store
-resume/ArturoGarridoGomez_Resume.pages
-resume/ArturoGarridoGomez_Resume_Short.pages
+.claude/
+
+# Resume source files (only PDFs needed for the site)
+resume/*.pages
+resume/*.docx
